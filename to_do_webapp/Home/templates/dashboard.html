@@ -1,0 +1,215 @@
+{% extends 'base_for_dashboard.html' %}
+{% load static %}
+{% block title %}
+    Dashboard
+{% endblock %}
+{% block content %}
+
+
+
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col">
+
+                        <div class="h-100">
+                            <div class="row mb-3 pb-1">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                                        <div class="flex-grow-1">
+                                            <h4 class="fs-16 mb-1">Good
+                                                Morning, {{ request.user.first_name }}&nbsp;{{ request.user.last_name }}!</h4>
+                                            <p class="text-muted mb-0">Here's what's happening with your store
+                                                today.</p>
+                                        </div>
+
+                                    </div><!-- end card header -->
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+
+                             <div class="row">
+                        <div class="col-xxl-4 col-sm-4">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-medium text-muted mb-0">Total Tasks</p>
+                                            <h1 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ total_tasks }}"></span></h1>
+                                            <!-- <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"> <i class="ri-arrow-up-line align-middle"></i> 17.32 %</span> vs. previous month</p> -->
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-soft-info text-info rounded-circle fs-4">
+                                                    <i class="ri-ticket-2-line"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end card body -->
+                            </div> <!-- end card-->
+                        </div>
+                        <!--end col-->
+                        <div class="col-xxl-4 col-sm-4">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-medium text-muted mb-0">Pending Tasks</p>
+                                            <h1 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ pending_tasks }}"></span></h1>
+                                            <!-- <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"> <i class="ri-arrow-down-line align-middle"></i> 0.87 %</span> vs. previous month</p> -->
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-soft-warning text-warning rounded-circle fs-4">
+                                                    <i class="mdi mdi-timer-sand"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end card body -->
+                            </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col-xxl-4 col-sm-4">
+                            <div class="card card-animate">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <p class="fw-medium text-muted mb-0">Completed Tasks</p>
+                                            <h1 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="{{ done_tasks}}"></span></h1>
+                                            <!-- <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"> <i class="ri-arrow-down-line align-middle"></i> 2.52 % </span> vs. previous month</p> -->
+                                        </div>
+                                        <div>
+                                            <div class="avatar-sm flex-shrink-0">
+                                                <span class="avatar-title bg-soft-success text-success rounded-circle fs-4">
+                                                    <i class="ri-checkbox-circle-line"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end card body -->
+                            </div>
+                        </div>
+                        <!--end col-->
+
+                        <!--end col-->
+                    </div>
+
+
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header border-0 align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Tasks</h4>
+
+                                        </div><!-- end card header -->
+
+                                        <div class="card-header p-0 border-0 bg-soft-light">
+                                            <div class="row g-0 text-center">
+                                                <div class="col-6 col-sm-3">
+                                                    <div class="p-3 border border-dashed border-start-0">
+                                                        <h5 class="mb-1"><span class="counter-value" data-target="{{ total_tasks }}"></span>
+                                                        </h5>
+                                                        <p class="text-muted mb-0">Total Tasks</p>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-6 col-sm-3">
+                                                    <div class="p-3 border border-dashed border-start-0">
+                                                        <h5 class="mb-1"><span class="counter-value"
+                                                                                data-target="{{ done_tasks }}"></span></h5>
+                                                        <p class="text-muted mb-0">Completed Tasks</p>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-6 col-sm-3">
+                                                    <div class="p-3 border border-dashed border-start-0">
+                                                        <h5 class="mb-1"><span class="counter-value"
+                                                                               data-target="{{ pending_tasks }}"></span></h5>
+                                                        <p class="text-muted mb-0">Pending Tasks</p>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-6 col-sm-3">
+                                                    <div class="p-3 border border-dashed border-start-0 border-end-0">
+                                                        <h5 class="mb-1 text-success"><span class="counter-value"
+                                                                                            data-target="{{ precentage }}"></span>%
+                                                        </h5>
+                                                        <p class="text-muted mb-0">Progress Ratio</p>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+
+                                        </div>
+                                        <!-- end card header -->
+
+                                        <div class="card-body p-0 pb-2">
+                                            <div class="w-100">
+                                                <div id="revenue-expenses-charts"
+                                                     data-colors='["--vz-success", "--vz-danger"]'
+                                                     class="apex-charts" dir="ltr"></div>
+                                            </div>
+                                        </div>
+                                        <!-- end card body -->
+                                    </div><!-- end card -->
+                                </div><!-- end col -->
+
+                            </div>
+
+
+
+
+                        </div> <!-- end .h-100-->
+
+                    </div> <!-- end col -->
+
+
+                </div>
+
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>
+                        © adnan.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by adnan
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+
+
+
+
+
+{% endblock %}

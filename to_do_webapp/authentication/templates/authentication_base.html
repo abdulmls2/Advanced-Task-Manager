@@ -1,0 +1,63 @@
+{% load static %}
+<title>{% block title %} Accounts {% endblock %}</title>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <title>AMB Oils</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="AMB Oils" name="description" />
+    <meta content="AMB Oils" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'web_app_assets/assets/images/favicon.ico' %}">
+
+    <!-- Layout config Js -->
+    <script src="{% static 'web_app_assets/assets/js/layout.js' %}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{% static 'web_app_assets/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{% static 'web_app_assets/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{% static 'web_app_assets/assets/css/app.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{% static 'web_app_assets/assets/css/custom.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+</head>
+ <body>
+
+
+
+
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+
+   <!-- JAVASCRIPT -->
+    <script src="{% static 'web_app_assets/assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'web_app_assets/assets/libs/simplebar/simplebar.min.js' %}"></script>
+    <script src="{% static 'web_app_assets/assets/libs/node-waves/waves.min.js' %}"></script>
+    <script src="{% static 'web_app_assets/assets/libs/feather-icons/feather.min.js' %}"></script>
+    <script src="{% static 'web_app_assets/assets/js/pages/plugins/lord-icon-2.1.0.js' %}"></script>
+    <script src="{% static 'web_app_assets/assets/js/plugins.js' %}"></script>
+
+    <!-- particles js -->
+    <script src="{% static 'web_app_assets/assets/libs/particles.js/particles.js' %}"></script>
+    <!-- particles app js -->
+    <script src="{% static 'web_app_assets/assets/js/pages/particles.app.js' %}"></script>
+    <!-- password-addon init -->
+    <script src="{% static 'web_app_assets/assets/js/pages/password-addon.init.js' %}"></script>
+
+
+    <script src="{% static 'web_app_assets/assets/js/pages/two-step-verification.init.js' %}"></script>
+
+
+  </body>
+</html>

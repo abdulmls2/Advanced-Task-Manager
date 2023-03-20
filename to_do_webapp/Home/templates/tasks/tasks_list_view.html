@@ -1,0 +1,219 @@
+{% extends 'base_for_dashboard.html' %}
+{% load static %}
+{% block title %}
+    Tasks List
+{% endblock %}
+{% block content %}
+
+
+
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Task List</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Task List View</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+
+
+                            <div class="card-body">
+                                <div id="customerList">
+                                    <div class="row g-4 mb-3">
+                                        <div class="col-sm-auto">
+                                            <div>
+                                                <a href="{% url 'create_task' %}" class="btn btn-success add-btn"><i
+                                                        class="ri-add-line align-bottom me-1"></i> Add New Task</a>
+                                                <button class="btn btn-soft-danger" id="delete_btn"><i
+                                                        class="ri-delete-bin-2-line"></i>Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <div class="d-flex justify-content-sm-end">
+                                                <div class="search-box ms-2">
+                                                    <input type="text" class="form-control search"
+                                                           placeholder="Search...">
+                                                    <i class="ri-search-line search-icon"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% include '_messages.html' %}
+
+                                    <div class="table-responsive table-card mt-3 mb-1">
+                                        <table class="table align-middle table-nowrap" id="customerTable">
+                                            <thead class="table-light">
+                                            <tr>
+                                                <th scope="col" style="width: 30px;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="checkAll"
+                                                               value="option">
+                                                    </div>
+                                                </th>
+
+                                                <th class="sort" data-sort="customer_name">Title</th>
+                                                <th class="sort" data-sort="email">Completed</th>
+
+
+                                                <th class="sort" data-sort="status">Priority</th>
+
+                                                <th class="sort" data-sort="action">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="list form-check-all">
+                                            {% for item in user_tasks %}
+                                                <tr id="{{ item.id }}">
+                                                    <th scope="row">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   name="chk_child" value="{{ item.id }}">
+                                                        </div>
+                                                    </th>
+
+
+                                                    <td class="customer_name">{{ item.title }}</td>
+                                                    {% if item.complete == True %}
+                                                    <td class="email"><span
+                                                            class="badge badge-soft-success text-uppercase">{{ item.complete }}</span></td>
+                                                    {% else %}
+                                                        <td class="email"><span
+                                                            class="badge badge-soft-danger text-uppercase">{{ item.complete }}</span></td>
+
+                                                    {% endif %}
+                                                  <td class="status"><span
+                                                            class="badge badge-soft-danger text-uppercase">{{ item.nature_of_task }}</span>
+                                                    </td>
+
+
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <div class="details">
+                                                                <a class="btn btn-sm btn-info details-item-btn"
+                                                                   href="{%  url 'task_edit' item.id %}">Details</a>
+                                                            </div>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                        <div class="noresult" style="display: none">
+                                            <div class="text-center">
+                                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                                           colors="primary:#121331,secondary:#08a88a"
+                                                           style="width:75px;height:75px"></lord-icon>
+                                                <h5 class="mt-2">Sorry! No Result Found</h5>
+                                                <p class="text-muted mb-0">We've searched more than 150+ Orders We did
+                                                    not find any orders for you search.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <div class="pagination-wrap hstack gap-2">
+                                            <a class="page-item pagination-prev disabled" href="#">
+                                                Previous
+                                            </a>
+                                            <ul class="pagination listjs-pagination mb-0"></ul>
+                                            <a class="page-item pagination-next" href="#">
+                                                Next
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+                <!-- End Page-content -->
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script>
+                                © adnan.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by adnan
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+
+        <!--start back-to-top-->
+        <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+            <i class="ri-arrow-up-line"></i>
+        </button>
+        <!--end back-to-top-->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#delete_btn').click(function () {
+                    if (confirm("Are you sure you want to delete selected?"))
+                        var id = [];
+                    var csrf = $('input[name=csrfmiddlewaretoken] ').val();
+                    $(':checkbox:checked').map(function (i) {
+                        id[i] = $(this).val()
+                    })
+                    if (id.length === 0) {
+                        alert("Please select files to delete")
+                    } else {
+                        console.log(id)
+
+
+                        $.ajax({
+                            url: 'delete_tasks',
+                            method: "POST",
+                            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                            data: {
+                                id
+                            },
+                            success: function (response) {
+                                for (var i = 0; i < id.length; i++) {
+                                    $('tr#' + id[i] + '').css('background-color', '#ccc');
+                                    $('tr#' + id[i] + '').fadeOut('slow');
+                                }
+                            }
+                        })
+                    }
+                })
+            });
+        </script>
+
+
+
+{% endblock %}

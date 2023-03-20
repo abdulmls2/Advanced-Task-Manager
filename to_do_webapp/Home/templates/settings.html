@@ -1,0 +1,277 @@
+{% extends 'base_for_dashboard.html' %}
+{% load static %}
+{% block title %}
+    Profile
+{% endblock %}
+{% block content %}
+
+
+
+
+
+
+
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+     
+            
+            <p>{% include '_messages.html' %}</p>
+
+            <br>
+            <br>
+            <br>
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="card mt-n5">
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
+
+                                        {% if user_profile.picture %}
+                                            <img src="{% static user_profile.picture.url %}"
+                                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+                                                 alt="user-profile-image">
+                                        {% else %}
+                                            <img src="{% static 'assets/images/users/avatar-1.jpg' %}"
+                                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+                                                 alt="user-profile-image">
+                                        {% endif %}
+                                    <form method="post" action="{% url 'Settings' %}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+
+
+                                        <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+
+                                            <input id="profile-img-file-input" type="file"
+                                                   class="profile-img-file-input" name="upload">
+                                            <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                                                    <span class="avatar-title rounded-circle bg-light text-body">
+                                                        <i class="ri-camera-fill"></i>
+
+
+
+                                                    </span>
+
+
+                                            </label>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <h5 class="fs-16 mb-1">{{ user_profile.owner.first_name }}
+                                        &nbsp; {{ user_profile.owner.last_name }}</h5>
+                                    {#                                        <p class="text-muted mb-0">Lead Designer / Developer</p>#}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end col-->
+                    <div class="col-xxl-12">
+                        <div class="card mt-xxl-n5">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails"
+                                           role="tab">
+                                            Personal Details
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#changePassword" role="tab">
+                                            Change Password
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="tab-content">
+
+
+                                    <div class="tab-pane active" id="personalDetails" role="tabpanel">
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="firstnameInput" class="form-label">First
+                                                            Name</label>
+                                                        <input type="text" class="form-control" name="fname"
+                                                               id="firstnameInput"
+                                                               placeholder="Enter your firstname"
+                                                               value="{{ user_profile.owner.first_name }}">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="lastnameInput" class="form-label">Last
+                                                            Name</label>
+                                                        <input type="text" class="form-control" id="lastnameInput"
+                                                               name="lname"
+                                                               placeholder="Enter your lastname"
+                                                               value="{{ user_profile.owner.last_name }}">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="phonenumberInput" class="form-label">Phone
+                                                            Number</label>
+                                                        <input type="text" class="form-control" name="phone"
+                                                               id="phonenumberInput"
+                                                               placeholder="Enter your phone number"
+                                                               value="{{ user_profile.phone }}" required>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="emailInput" class="form-label">Email
+                                                            Address</label>
+                                                        <input type="email" class="form-control" name="email"
+                                                               id="emailInput"
+                                                               placeholder="Enter your email"
+                                                               value="{{ user_profile.owner.email }}" readonly>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label for="JoiningdatInput" class="form-label">Joining
+                                                            Date</label>
+                                                        <input type="text" class="form-control"
+                                                               data-provider="flatpickr" id="JoiningdatInput"
+                                                               data-date-format="d M, Y"
+                                                               value="{{ user_profile.created_at }}"
+                                                        />
+                                                    </div>
+                                                </div>
+
+
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label for="cityInput" class="form-label">Address</label>
+                                                        <input type="text" class="form-control" id="cityInput"
+                                                               name="address"
+                                                               placeholder="Address"
+                                                               value="{{ user_profile.address }}"/>
+                                                    </div>
+                                                </div>
+
+                                                <!--end col-->
+
+
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <button type="submit" class="btn btn-primary">Updates
+                                                        </button>
+                                                        <button type="button" class="btn btn-soft-info">Cancel
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+
+                                            <!--end row-->
+                                        </form>
+                                    </div>
+                                    <!--end tab-pane-->
+
+                                    <div class="tab-pane" id="changePassword" role="tabpanel">
+                                        <form action="{% url 'setting_security' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="row g-2">
+{#                                                <div class="col-lg-4">#}
+{#                                                    <div>#}
+{#                                                        <label for="oldpasswordInput" class="form-label">Old#}
+{#                                                            Password*</label>#}
+{#                                                        <input type="password" class="form-control"#}
+{#                                                               id="oldpasswordInput"#}
+{#                                                               placeholder="Enter current password">#}
+{#                                                    </div>#}
+{#                                                </div>#}
+                                                <!--end col-->
+                                                <div class="col-lg-4">
+                                                    <div>
+                                                        <label for="newpasswordInput" class="form-label">New
+                                                            Password*</label>
+                                                        <input type="password" class="form-control"
+                                                               id="newpasswordInput" name="new_password" placeholder="Enter new password">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-4">
+                                                    <div>
+                                                        <label for="confirmpasswordInput" class="form-label">Confirm
+                                                            Password*</label>
+                                                        <input type="password" class="form-control"
+                                                               id="confirmpasswordInput" placeholder="Confirm password">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="text-end">
+                                                        <button type="submit" class="btn btn-info">Change Password
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+            </div>
+            <!-- container-fluid -->
+        </div><!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+
+
+
+
+
+{% endblock %}
